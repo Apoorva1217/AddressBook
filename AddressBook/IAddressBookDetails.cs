@@ -20,5 +20,10 @@ namespace AddressBook
         /// Edit Contact method.
         /// </summary>
         public void EditContact(string firstName,string lastName);
+
+        /// <summary>
+        /// Delete Contact method.
+        /// </summary>
+        public void DeleteContact(string firstName, string lastName);
     }
 }

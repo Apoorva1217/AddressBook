@@ -67,12 +67,17 @@ namespace AddressBook
             {
                 Console.WriteLine(entry);
             }
+            if (list.Count == 0)
+            {
+                Console.WriteLine("No Records in Address Book");
+            }
         }
 
         /// <summary>
         /// Ability to edit existing contact person using their name
         /// </summary>
-        /// <param name="firstName">first name.</param>
+        /// <param name="firstName"></param>
+        /// <param name="lastName"></param>
         public void EditContact(string firstName,string lastName)
         {
             int check = 0;
@@ -131,6 +136,23 @@ namespace AddressBook
                     }
                 }
             }
+        }
+
+        /// <summary>
+        /// Ability to delete a person using person's name 
+        /// </summary>
+        /// <param name="firstName"></param>
+        /// <param name="lastName"></param>
+        public void DeleteContact(string firstname,string lastname)
+        {
+            for (int i = 0; i < this.list.Count; i++)
+            {
+                if (this.list[i].FirstName.Equals(firstname) && this.list[i].LastName.Equals(lastname))
+                {
+                    this.list[i] = null;
+                }
+            }
+            Console.WriteLine("Your expected entry is deleted from records!");
         }
     }
 }

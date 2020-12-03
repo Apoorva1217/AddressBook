@@ -16,7 +16,8 @@ namespace AddressBook
                 Console.WriteLine("1.Add Details");
                 Console.WriteLine("2.Display Details");
                 Console.WriteLine("3.Edit Details");
-                Console.WriteLine("4.Exit");
+                Console.WriteLine("4.Delete Details");
+                Console.WriteLine("5.Exit");
 
                 string choice = Console.ReadLine();
                 int ch = Convert.ToInt32(choice);
@@ -37,6 +38,13 @@ namespace AddressBook
                         addressBookDetails.EditContact(firstName,lastName);
                         break;
                     case 4:
+                        Console.WriteLine("Enter First Name:");
+                        string firstname = Console.ReadLine();
+                        Console.WriteLine("Enter Last Name:");
+                        string lastname = Console.ReadLine();
+                        addressBookDetails.DeleteContact(firstname,lastname);
+                        break;
+                    case 5:
                         return;
                 }
             }
