@@ -44,13 +44,13 @@ namespace AddressBook
             string zipCode = Console.ReadLine();
             bookRegex.ValidateZipCode(zipCode);
 
-            Console.WriteLine("Enter Email ID:");
-            string emailID = Console.ReadLine();
-            bookRegex.ValidateEmail(emailID);
-            
             Console.WriteLine("Enter Mobile Number:");
             string mobileNumber = Console.ReadLine();
             bookRegex.ValidateMobileNumber(mobileNumber);
+
+            Console.WriteLine("Enter Email ID:");
+            string emailID = Console.ReadLine();
+            bookRegex.ValidateEmail(emailID);
 
             Console.WriteLine("Your details are Added Successfully...");
 
