@@ -12,11 +12,113 @@ namespace AddressBook
         private readonly List<AddressBookModel> list = new List<AddressBookModel>();
 
         /// <summary>
+        /// Created a Dictionary.
+        /// </summary>
+        Dictionary<string, AddressBookRepo> dictionary = new Dictionary<string, AddressBookRepo>();
+
+        /// <summary>
         /// Assign person equals null. 
         /// </summary>
         private AddressBookModel addressBook = null;
 
         AddressBookRegex bookRegex = new AddressBookRegex();
+
+        // <summary>
+        /// Refactor to add multiple Address Book to the System. Each Address Book has a unique Name
+        /// </summary>
+        public void CreateMultipleAddressBook()
+        {
+            while (true)
+            {
+                Console.WriteLine("Enter your Choice");
+                Console.WriteLine("1.Add Address Book");
+                Console.WriteLine("2.Use Existing Address Book");
+                Console.WriteLine("3.Exit");
+
+                String choice = Console.ReadLine();
+                int choice1 = Convert.ToInt32(choice);
+                switch (choice1)
+                {
+                    case 1:
+                        Console.WriteLine("Enter the Name of Address Book");
+                        string name = Console.ReadLine();
+                        if (dictionary.ContainsKey(name))
+                        {
+                            Console.WriteLine("Already exists...");
+                        }
+                        else
+                        {
+                            AddressBookRepo addressBook = new AddressBookRepo();
+                            dictionary.Add(name, addressBook);
+                            Console.WriteLine("Address Book is Created...");
+                            addressBook.AddressBookMenu();
+                        }
+                        break;
+                    case 2:
+                        Console.WriteLine("Enter Address book name: ");
+                        string addressBookName = Console.ReadLine();
+                        if (dictionary.ContainsKey(addressBookName))
+                        {
+                            dictionary[addressBookName].AddressBookMenu();
+                        }
+                        else
+                        {
+                            Console.WriteLine("Address book does not exists");
+                        }
+                        break;
+                    case 3:
+                        return;
+                }
+            }
+        }
+
+        /// <summary>
+        /// AddressBook Menu.
+        /// </summary>
+        public void AddressBookMenu()
+        {
+            IAddressBookDetails addressBookDetails = new AddressBookRepo();
+            bool check = true;
+            while (check == true)
+            {
+                Console.WriteLine("\n---Welcome to Address Book Program!---");
+                Console.WriteLine("***Enter Your Choice***");
+                Console.WriteLine("1.Add Details");
+                Console.WriteLine("2.Display Details");
+                Console.WriteLine("3.Edit Details");
+                Console.WriteLine("4.Delete Details");
+                Console.WriteLine("5.Exit");
+
+                string choice = Console.ReadLine();
+                int ch = Convert.ToInt32(choice);
+
+                switch (ch)
+                {
+                    case 1:
+                        addressBookDetails.AddContact();
+                        break;
+                    case 2:
+                        addressBookDetails.DisplayContacts();
+                        break;
+                    case 3:
+                        Console.WriteLine("Enter First Name:");
+                        string firstName = Console.ReadLine();
+                        Console.WriteLine("Enter Last Name:");
+                        string lastName = Console.ReadLine();
+                        addressBookDetails.EditContact(firstName, lastName);
+                        break;
+                    case 4:
+                        Console.WriteLine("Enter First Name:");
+                        string firstname = Console.ReadLine();
+                        Console.WriteLine("Enter Last Name:");
+                        string lastname = Console.ReadLine();
+                        addressBookDetails.DeleteContact(firstname, lastname);
+                        break;
+                    case 5:
+                        return;
+                }
+            }
+        }
 
         /// <summary>
         /// Ability to Add new Contact in Address Book
