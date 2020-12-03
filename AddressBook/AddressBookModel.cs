@@ -32,7 +32,7 @@ namespace AddressBook
 
         public string FirstName { get => this.firstName; set => this.firstName = value; }
         public string LastName { get => this.lastName; set => this.lastName = value; }
-        public string Adderss { get => this.address; set => this.address = value; }
+        public string Address { get => this.address; set => this.address = value; }
         public string City { get => this.city; set => this.city = value; }
         public string State { get => this.state; set => this.state = value; }
         public string ZipCode { get => this.zipCode; set => this.zipCode = value; }

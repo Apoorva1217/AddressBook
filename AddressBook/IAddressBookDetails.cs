@@ -15,5 +15,10 @@ namespace AddressBook
         /// Display method.
         /// </summary>
         public void DisplayContacts();
+
+        /// <summary>
+        /// Edit Contact method.
+        /// </summary>
+        public void EditContact(string firstName,string lastName);
     }
 }

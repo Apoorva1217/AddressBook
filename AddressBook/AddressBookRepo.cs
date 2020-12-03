@@ -14,7 +14,7 @@ namespace AddressBook
         /// <summary>
         /// Assign person equals null. 
         /// </summary>
-        private AddressBookModel person = null;
+        private AddressBookModel addressBook = null;
 
         AddressBookRegex bookRegex = new AddressBookRegex();
 
@@ -54,8 +54,8 @@ namespace AddressBook
 
             Console.WriteLine("Your details are Added Successfully...");
 
-            this.person = new AddressBookModel(firstName, lastName, address, city, state, zipCode, mobileNumber, emailID);
-            this.list.Add(this.person);
+            this.addressBook = new AddressBookModel(firstName, lastName, address, city, state, zipCode, mobileNumber, emailID);
+            this.list.Add(this.addressBook);
         }
 
         /// <summary>
@@ -66,6 +66,70 @@ namespace AddressBook
             foreach (AddressBookModel entry in this.list)
             {
                 Console.WriteLine(entry);
+            }
+        }
+
+        /// <summary>
+        /// Ability to edit existing contact person using their name
+        /// </summary>
+        /// <param name="firstName">first name.</param>
+        public void EditContact(string firstName,string lastName)
+        {
+            int check = 0;
+            for (int i = 0; i < this.list.Count; i++)
+            {
+                if (this.list[i].FirstName.Equals(firstName) && this.list[i].LastName.Equals(lastName))
+                {
+                    while (check == 0)
+                    {
+                        AddressBookModel addressBook = this.list[i];
+                        Console.WriteLine(addressBook);
+                        Console.WriteLine("Enter your choice for editing: ");
+                        Console.WriteLine("1.Address 2.City 3.State 4.Zip Code 5.Phone Number 6.Email ID 7.Exit");
+                        string choice = Console.ReadLine();
+                        int ch = Convert.ToInt32(choice);
+                        switch (ch)
+                        {
+                            case 1:
+                                Console.WriteLine("enter new address");
+                                string address = Console.ReadLine();
+                                addressBook.Address = address;
+                                break;
+                            case 2:
+                                Console.WriteLine("enter new city");
+                                string city = Console.ReadLine();
+                                addressBook.City = city;
+                                break;
+                            case 3:
+                                Console.WriteLine("enter new state");
+                                string state = Console.ReadLine();
+                                addressBook.State = state;
+                                break;
+
+                            case 4:
+                                Console.WriteLine("enter new zipCode");
+                                string zipCode = Console.ReadLine();
+                                addressBook.ZipCode = zipCode;
+                                break;
+
+                            case 5:
+                                Console.WriteLine("enter new phoneNumber");
+                                string mobileNumber = Console.ReadLine();
+                                addressBook.MobileNumber = mobileNumber;
+                                break;
+
+                            case 6:
+                                Console.WriteLine("enter new Email ID");
+                                string emailID = Console.ReadLine();
+                                addressBook.EmailID = emailID;
+                                break;
+
+                            case 7:
+                                check = 1;
+                                break;
+                        }
+                    }
+                }
             }
         }
     }

@@ -11,11 +11,12 @@ namespace AddressBook
             bool check = true;
             while (check == true)
             {
-                Console.WriteLine("---Welcome to Address Book Program!---");
+                Console.WriteLine("\n---Welcome to Address Book Program!---");
                 Console.WriteLine("***Enter Your Choice***");
                 Console.WriteLine("1.Add Details");
                 Console.WriteLine("2.Display Details");
-                Console.WriteLine("3.Exit");
+                Console.WriteLine("3.Edit Details");
+                Console.WriteLine("4.Exit");
 
                 string choice = Console.ReadLine();
                 int ch = Convert.ToInt32(choice);
@@ -29,6 +30,13 @@ namespace AddressBook
                         addressBookDetails.DisplayContacts();
                         break;
                     case 3:
+                        Console.WriteLine("Enter First Name:");
+                        string firstName = Console.ReadLine();
+                        Console.WriteLine("Enter Last Name:");
+                        string lastName = Console.ReadLine();
+                        addressBookDetails.EditContact(firstName,lastName);
+                        break;
+                    case 4:
                         return;
                 }
             }
