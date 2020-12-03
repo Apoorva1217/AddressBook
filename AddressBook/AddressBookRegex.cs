@@ -15,7 +15,7 @@ namespace AddressBook
         /// <summary>
         /// Regex pattern for Zip code
         /// </summary>
-        public const string zipcode = "^[0-9]{6}$";
+        public const string zipcodePattern = "^[0-9]{6}$";
 
         /// <summary>
         /// Regex pattern for Email ID
@@ -25,36 +25,91 @@ namespace AddressBook
         /// <summary>
         /// Regex pattern for Mobile Number
         /// </summary>
-        public static string mobileNumberPattern = "^[1-9]{2}[ ][0-9]{10}";
+        public static string mobileNumberPattern = "^[0-9]{10}";
 
         /// <summary>
-        /// Validate First Name with Lambda Expression
+        /// Validate  First Name
         /// </summary>
-        public Func<string, string> ValidateFirstName = x => Regex.IsMatch(x, namePattern) ? "Valid First Name" :
-           throw new CustomException(CustomException.ExceptionType.INVALID_FIRST_NAME, "Invalid First Name");
+        /// <param name="firstName"></param>
+        public void ValidateFirstName(string firstName)
+        {
+            if (Regex.IsMatch(firstName, namePattern))
+            {
+                return;
+            }
+            else
+            {
+                Console.WriteLine("FirstName should have minimum 3 characters starting with Captital letter");
+                throw new CustomException(CustomException.ExceptionType.INVALID_FIRST_NAME, "Invalid First Name");
+            }
+        }
 
         /// <summary>
-        /// Validate Last Name with Lambda Expression
+        /// Validate Last Name
         /// </summary>
-        public Func<string, string> ValidateLastName = x => Regex.IsMatch(x, namePattern) ? "Valid Last Name" :
-           throw new CustomException(CustomException.ExceptionType.INVALID_LAST_NAME, "Invalid Last Name");
+        /// <param name="lastName"></param>
+        public void ValidateLastName(string lastName)
+        {
+            if (Regex.IsMatch(lastName, namePattern))
+            {
+                return;
+            }
+            else
+            {
+                Console.WriteLine("LastName should have minimum 3 characters starting with Captital letter");
+                throw new CustomException(CustomException.ExceptionType.INVALID_LAST_NAME, "Invalid Last Name");
+            }
+        }
 
         /// <summary>
-        /// Validate Last Name with Lambda Expression
+        /// Validate Zip Code
         /// </summary>
-        public Func<string, string> ValidateZipCode = x => Regex.IsMatch(x, namePattern) ? "Valid Zip Code" :
-           throw new CustomException(CustomException.ExceptionType.INVALID_ZIP_CODE, "Invalid Zip Code");
+        /// <param name="zipCode"></param>
+        public void ValidateZipCode(string zipCode)
+        {
+            if (Regex.IsMatch(zipCode, zipcodePattern))
+            {
+                return;
+            }
+            else
+            {
+                Console.WriteLine("ZipCode must have 6 digits");
+                throw new CustomException(CustomException.ExceptionType.INVALID_ZIP_CODE, "Invalid Zip Code");
+            }
+        }
 
         /// <summary>
-        /// Validate Email ID with Lambda Expression
+        /// Validate Email ID
         /// </summary>
-        public Func<string, string> ValidateEmail = x => Regex.IsMatch(x, mailIDPattern) ? "Valid Email ID" :
-           throw new CustomException(CustomException.ExceptionType.INVALID_EMAIL, "Invalid Email ID");
+        /// <param name="emailID"></param>
+        public void ValidateEmail(string emailID)
+        {
+            if (Regex.IsMatch(emailID, mailIDPattern))
+            {
+                return;
+            }
+            else
+            {
+                Console.WriteLine("Invalid Email ID");
+                throw new CustomException(CustomException.ExceptionType.INVALID_EMAIL, "Invalid Email ID");
+            }
+        }
 
         /// <summary>
-        /// Validate Mobile Number with Lambda Expression
+        /// Validate Mobile Number
         /// </summary>
-        public Func<string, string> ValidateMobileNumber = x => Regex.IsMatch(x, mobileNumberPattern) ? "Valid Mobile Number" :
-           throw new CustomException(CustomException.ExceptionType.INVALID_MOBILE_NUMBER, "Invalid Mobile Number");
+        /// <param name="mobileNumber"></param>
+        public void ValidateMobileNumber(string mobileNumber)
+        {
+            if (Regex.IsMatch(mobileNumber, mobileNumberPattern))
+            {
+                return;
+            }
+            else
+            {
+                Console.WriteLine("Invalid Mobile Number");
+                throw new CustomException(CustomException.ExceptionType.INVALID_MOBILE_NUMBER, "Invalid Mobile Number");
+            }
+        }
     }
 }
