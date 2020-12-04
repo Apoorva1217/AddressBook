@@ -132,7 +132,14 @@ namespace AddressBook
             Console.WriteLine("Enter Last Name:");
             string lastName = Console.ReadLine();
             bookRegex.ValidateLastName(lastName);
-            
+
+            /// Ability to ensure there is no Duplicate Entry of the same Person in a particular Address Book
+            foreach (AddressBookModel addressBook in list.FindAll(name => name.FirstName.Equals(firstName) && name.LastName.Equals(lastName)))
+            {
+                    Console.WriteLine("You entered the Duplicate Name...");
+                    return;
+            }
+        
             Console.WriteLine("Enter address");
             string address = Console.ReadLine();
 

@@ -5,4 +5,8 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="DocuSign.eSign.dll" Version="5.2.0" />
+  </ItemGroup>
+
 </Project>
