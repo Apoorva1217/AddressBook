@@ -92,7 +92,7 @@ namespace AddressBook
                 Console.WriteLine("5.Search Person in City or State");
                 Console.WriteLine("6.View Person by City or State");
                 Console.WriteLine("7.Count Person by City or State");
-                Console.WriteLine("8.Sort Details by First Name");
+                Console.WriteLine("8.Sort Details");
                 Console.WriteLine("9.Exit");
 
                 string choice = Console.ReadLine();
@@ -130,7 +130,7 @@ namespace AddressBook
                         addressBookDetails.CountOfPersonByCityOrState();
                         break;
                     case 8:
-                        addressBookDetails.SortByName();
+                        addressBookDetails.SortDetails();
                         break;
                     case 9:
                         return;
@@ -378,23 +378,38 @@ namespace AddressBook
         }
 
         /// <summary>
-        /// Sort details by first name
+        /// Sort details
         /// </summary>
-        public void SortByName()
+        public void SortDetails()
         {
             list.Sort(this.Compare);
             this.DisplayContacts();
         }
 
         /// <summary>
-        /// Compare First name of person
+        /// Compare details
         /// </summary>
         /// <param name="x"></param>
         /// <param name="y"></param>
         /// <returns></returns>
         public int Compare(AddressBookModel x, AddressBookModel y)
         {
-            return x.FirstName.CompareTo(y.FirstName);
+            Console.WriteLine("Enter choice for sorting:");
+            Console.WriteLine("1. FirstName 2. City 3. State 4. ZipCode");
+            String choice = Console.ReadLine();
+            int choice1 = Convert.ToInt32(choice);
+            switch (choice1)
+            {
+                case 1:
+                    return x.FirstName.CompareTo(y.FirstName);
+                case 2:
+                    return x.City.CompareTo(y.City);
+                case 3:
+                    return x.State.CompareTo(y.State);
+                case 4:
+                    return x.ZipCode.CompareTo(y.ZipCode);
+            }
+            return 0;
         }
     }
 }

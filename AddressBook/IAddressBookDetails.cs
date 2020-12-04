@@ -44,6 +44,6 @@ namespace AddressBook
         /// <summary>
         /// Sort method.
         /// </summary>
-        public void SortByName();
+        public void SortDetails();
     }
 }
