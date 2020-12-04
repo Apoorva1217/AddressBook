@@ -92,7 +92,8 @@ namespace AddressBook
                 Console.WriteLine("5.Search Person in City or State");
                 Console.WriteLine("6.View Person by City or State");
                 Console.WriteLine("7.Count Person by City or State");
-                Console.WriteLine("8.Exit");
+                Console.WriteLine("8.Sort Details by First Name");
+                Console.WriteLine("9.Exit");
 
                 string choice = Console.ReadLine();
                 int ch = Convert.ToInt32(choice);
@@ -129,6 +130,9 @@ namespace AddressBook
                         addressBookDetails.CountOfPersonByCityOrState();
                         break;
                     case 8:
+                        addressBookDetails.SortByName();
+                        break;
+                    case 9:
                         return;
                 }
             }
@@ -371,6 +375,26 @@ namespace AddressBook
                     Console.WriteLine(count);
                     break;
             }
+        }
+
+        /// <summary>
+        /// Sort details by first name
+        /// </summary>
+        public void SortByName()
+        {
+            list.Sort(this.Compare);
+            this.DisplayContacts();
+        }
+
+        /// <summary>
+        /// Compare First name of person
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <returns></returns>
+        public int Compare(AddressBookModel x, AddressBookModel y)
+        {
+            return x.FirstName.CompareTo(y.FirstName);
         }
     }
 }

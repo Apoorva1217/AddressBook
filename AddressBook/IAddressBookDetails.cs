@@ -40,5 +40,10 @@ namespace AddressBook
         /// Count Person by City or State
         /// </summary>
         public void CountOfPersonByCityOrState();
+
+        /// <summary>
+        /// Sort method.
+        /// </summary>
+        public void SortByName();
     }
 }
