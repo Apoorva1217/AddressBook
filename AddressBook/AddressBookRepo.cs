@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Linq;
 using System.Text;
 
 namespace AddressBook
@@ -87,7 +89,10 @@ namespace AddressBook
                 Console.WriteLine("2.Display Details");
                 Console.WriteLine("3.Edit Details");
                 Console.WriteLine("4.Delete Details");
-                Console.WriteLine("5.Exit");
+                Console.WriteLine("5.Search Person in City or State");
+                Console.WriteLine("6.View Person by City or State");
+                Console.WriteLine("7.Count Person by City or State");
+                Console.WriteLine("8.Exit");
 
                 string choice = Console.ReadLine();
                 int ch = Convert.ToInt32(choice);
@@ -115,6 +120,15 @@ namespace AddressBook
                         addressBookDetails.DeleteContact(firstname, lastname);
                         break;
                     case 5:
+                        addressBookDetails.SearchPersonInCityOrState();
+                        break;
+                    case 6:
+                        addressBookDetails.ViewPersonByCityOrState();
+                        break;
+                    case 7:
+                        addressBookDetails.CountOfPersonByCityOrState();
+                        break;
+                    case 8:
                         return;
                 }
             }
@@ -262,6 +276,101 @@ namespace AddressBook
                 }
             }
             Console.WriteLine("Your expected entry is deleted from records!");
+        }
+
+        /// <summary>
+        /// Ability to Search person in City or State
+        /// </summary>
+        public void SearchPersonInCityOrState()
+        {
+            Console.WriteLine("Enter your Choice for Searching a Person in");
+            Console.WriteLine("1. City 2. State");
+            String choice = Console.ReadLine();
+            int choice1 = Convert.ToInt32(choice);
+            switch (choice1)
+            {
+                case 1:
+                    Console.WriteLine("Enter your First Name:");
+                    String NameToSearchInCity = Console.ReadLine();
+                    foreach (AddressBookModel addressBook in list.FindAll(e => e.FirstName == NameToSearchInCity))
+                    {
+                        Console.WriteLine("City of " + NameToSearchInCity + " is : " + addressBook.City);
+                    }
+                    break;
+                case 2:
+                    Console.WriteLine("Enter your First Name:");
+                    String nameToSearchInState = Console.ReadLine();
+                    foreach (AddressBookModel addressBook in list.FindAll(e => e.FirstName == nameToSearchInState))
+                    {
+                        Console.WriteLine("State of " + nameToSearchInState + " is : " + addressBook.State);
+                    }
+                    break;
+            }
+        }
+
+        /// <summary>
+        /// View person by City or State
+        /// </summary>
+        public void ViewPersonByCityOrState()
+        {
+            Console.WriteLine("Enter your choice for viewing:");
+            Console.WriteLine("1. City 2. State");
+            String choice = Console.ReadLine();
+            int choice1 = Convert.ToInt32(choice);
+            switch (choice1)
+            {
+                case 1:
+                    Console.WriteLine("Enter your city");
+                    String city = Console.ReadLine();
+                    for (int i = 0; i < list.Count; i++)
+                    {
+                        if (list[i].City.Equals(city))
+                            Console.WriteLine(list[i]);
+                    }
+                    break;
+                case 2:
+                    Console.WriteLine("Enter your state");
+                    String state = Console.ReadLine();
+                    for (int i = 0; i < list.Count; i++)
+                    {
+                        if (list[i].State.Equals(state))
+                            Console.WriteLine(list[i]);
+                    }
+                    break;
+            }
+        }
+
+        /// <summary>
+        /// Ability to Count person in a City or State
+        /// </summary>
+        public void CountOfPersonByCityOrState()
+        {
+            int count = 0;
+            Console.WriteLine("Enter your Choice for Count Person by:");
+            Console.WriteLine("1. City 2. State");
+            String choice = Console.ReadLine();
+            int choice1 = Convert.ToInt32(choice);
+            switch (choice1)
+            {
+                case 1:
+                    Console.WriteLine("Enter your City");
+                    String city = Console.ReadLine();
+                    foreach (AddressBookModel addressBook in list.FindAll(c => c.City == city))
+                    {
+                        count = list.Count();
+                    }
+                    Console.WriteLine(count);
+                    break;
+                case 2:
+                    Console.WriteLine("Enter your State");
+                    String state = Console.ReadLine();
+                    foreach (AddressBookModel addressBook in list.FindAll(c => c.State == state))
+                    {
+                        count = list.Count();
+                    }
+                    Console.WriteLine(count);
+                    break;
+            }
         }
     }
 }

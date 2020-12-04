@@ -25,5 +25,20 @@ namespace AddressBook
         /// Delete Contact method.
         /// </summary>
         public void DeleteContact(string firstName, string lastName);
+
+        /// <summary>
+        /// Search Person in City or State
+        /// </summary>
+        public void SearchPersonInCityOrState();
+
+        /// <summary>
+        /// View Person by City or State
+        /// </summary>
+        public void ViewPersonByCityOrState();
+
+        /// <summary>
+        /// Count Person by City or State
+        /// </summary>
+        public void CountOfPersonByCityOrState();
     }
 }
