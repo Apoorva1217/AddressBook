@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Text;
 
 namespace AddressBook
@@ -87,7 +88,8 @@ namespace AddressBook
                 Console.WriteLine("2.Display Details");
                 Console.WriteLine("3.Edit Details");
                 Console.WriteLine("4.Delete Details");
-                Console.WriteLine("5.Exit");
+                Console.WriteLine("5.Search Person in City or State");
+                Console.WriteLine("6.Exit");
 
                 string choice = Console.ReadLine();
                 int ch = Convert.ToInt32(choice);
@@ -115,6 +117,9 @@ namespace AddressBook
                         addressBookDetails.DeleteContact(firstname, lastname);
                         break;
                     case 5:
+                        addressBookDetails.SearchPersonInCityOrState();
+                        break;
+                    case 6:
                         return;
                 }
             }
@@ -262,6 +267,36 @@ namespace AddressBook
                 }
             }
             Console.WriteLine("Your expected entry is deleted from records!");
+        }
+
+        /// <summary>
+        /// Ability to Search person in City or State
+        /// </summary>
+        public void SearchPersonInCityOrState()
+        {
+            Console.WriteLine("Enter your Choice for Searching a Person in");
+            Console.WriteLine("1. City 2. State");
+            String choice = Console.ReadLine();
+            int choice1 = Convert.ToInt32(choice);
+            switch (choice1)
+            {
+                case 1:
+                    Console.WriteLine("Enter your First Name:");
+                    String NameToSearchInCity = Console.ReadLine();
+                    foreach (AddressBookModel addressBook in list.FindAll(e => e.FirstName == NameToSearchInCity))
+                    {
+                        Console.WriteLine("City of " + NameToSearchInCity + " is : " + addressBook.City);
+                    }
+                    break;
+                case 2:
+                    Console.WriteLine("Enter your First Name:");
+                    String nameToSearchInState = Console.ReadLine();
+                    foreach (AddressBookModel addressBook in list.FindAll(e => e.FirstName == nameToSearchInState))
+                    {
+                        Console.WriteLine("State of " + nameToSearchInState + " is : " + addressBook.State);
+                    }
+                    break;
+            }
         }
     }
 }
